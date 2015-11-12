@@ -2,11 +2,15 @@
 
 function setupPage() {
 	// Get the full JSON file
-	fullSnippets = jQuery.getJSON("snippets.json", function(data) {
-		return data;
-	}); // For actual online implementation. Comment out for local testing.
+	//fullSnippets = jQuery.getJSON("snippets.json", function(data) {
+	//	return data;
+	//}); // For actual online implementation. Comment out for local testing.
 	//temporaryFunctionToSetupJson(); // For local testing. Comment out for online implementation.
-	
+	loadJSON(function(response) {
+		// Parse JSON string into object
+		fullSnippets = JSON.parse(response);
+	});
+
 	// Condense the full JSON into a shorter array to speed up the search
 	shortSnippets = [];
 	$.each(fullSnippets.snippets, function(i, v) {
@@ -124,6 +128,21 @@ function setupArrayEqualsFunction() {
 }
 // Hide method from for-in loops
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
+}
+
+// http://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
+function loadJSON(callback) {
+
+	var xobj = new XMLHttpRequest();
+	xobj.overrideMimeType("application/json");
+	xobj.open('GET', 'snippets.json', true);
+	xobj.onreadystatechange = function () {
+		if (xobj.readyState == 4 && xobj.status == "200") {
+			// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+			callback(xobj.responseText);
+		}
+	};
+	xobj.send(null);
 }
 
 function temporaryFunctionToSetupJson() {

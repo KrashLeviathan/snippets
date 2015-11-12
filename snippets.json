@@ -1,0 +1,37 @@
+{"snippets":[
+	{"title":"Selection Sort Algorithm",
+	"categories":[
+		{"category":"Programming"},
+		{"category":"Java"}],
+	"copyable":"true",
+	"copyText":"Algorithm text here, or link to it",
+	"favorite":"false",
+	"linkToFull":"http://www.AddTheLinkHere.com"},
+	
+	{"title":"Insertion Sort Algorithm",
+	"categories":[
+		{"category":"Programming"},
+		{"category":"Java"}],
+	"copyable":"true",
+	"copyText":"Algorithm text here, or link to it",
+	"favorite":"false",
+	"linkToFull":"http://www.AddTheLinkHere.com"},
+	
+	{"title":"Merge Sort Algorithm",
+	"categories":[
+		{"category":"Programming"},
+		{"category":"Java"}],
+	"copyable":"true",
+	"copyText":"Algorithm text here, or link to it",
+	"favorite":"false",
+	"linkToFull":"http://www.AddTheLinkHere.com"},
+	
+	{"title":"Quick Sort Algorithm",
+	"categories":[
+		{"category":"Programming"},
+		{"category":"Java"}],
+	"copyable":"true",
+	"copyText":"Algorithm text here, or link to it",
+	"favorite":"false",
+	"linkToFull":"http://www.AddTheLinkHere.com"}
+]}

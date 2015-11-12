@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Snippets - A Collection of Useful Things</title>
+<link rel="stylesheet" href="css/foundation.css" />
+<script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<div class="row">
+  <div class="large-12 columns">
+    <h1><mark style="font-size: larger; font-weight: bolder; background: none">S</mark>nippets</h1>
+    <p id="subtitle">A Collection of Useful Things</p>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <form>
+      <div class="row">
+        <div class="large-8 medium-8 columns">
+          <label id="search-label">Search</label>
+          <br>
+          <input type="text" id="search-bar" placeholder="this, that, the other (scroll through in js)" style="width: 100%" onInput="updateSearchResults()" />
+        </div>
+        <div class="large-4 medium-4 columns"> <a href="#" class="small radius button">Search deeper...</a>
+        <img data-interchange="[img/rabbit-hole.jpg, (default)], [img/hidden-door.gif, (large)]" alt="Do a more indepth search" style="height: 100px">
+<noscript><img src="img/rabbit-hole.jpg" alt="Do a more indepth search" style="height: 100px"></noscript>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Quick Results</h2>
+    <div id="results-list">
+    </div>
+    <div id="no-items-in-list" class="panel" style="position: relative">
+    	<img src="img/empty-pocket.jpg" alt="empty pockets" style="height: 80px; width: 80px; margin-right: 20px; float: left">
+        <div class="snippet-details" style="margin-right: 40px">
+            <h3>Turning up nothing but pocket lint...</h3>
+            <p>Try <a href="#">searching deeper</a> to get more results.</p>
+        </div>
+    </div>
+    <a href="#" id="back-to-top-button" class="small radius secondary button">Back to Top</a> <a href="http://foundation.zurb.com/docs/" class="small button">Go to Foundation Docs</a> 
+  </div>
+</div>
+<script src="js/vendor/jquery.js"></script> 
+<script src="js/foundation.min.js"></script> 
+<script src="js/snippet-search.js"></script>
+<script>
+      $(document).foundation();
+	  loadJson();
+    </script>
+</body>
+</html>

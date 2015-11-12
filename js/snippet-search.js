@@ -71,26 +71,26 @@ function clearResults() {
 function addResult(i) {
 	// var data = jQuery.parseJSON(json);
 	var data = fullSnippets.snippets[i];
-	var resultToAdd = '<div class="result-item panel" style="position: relative">' + 
+	var resultToAdd = '<div id="result-index-' + i + '" class="result-item panel" style="position: relative">' +
         	'<img src="' + data.imageUrl + '" alt="' + data.imageAlt + '" style="height: 80px; width: 80px; margin-right: 20px; float: left">' + 
             '<div class="snippet-details" style="margin-right: 40px">' + 
             	'<a href="' + data.linkToFull + '" target="_blank"><h3>' + data.title + '</h3></a>' +
             	'<p>' + data.categories + '</p>' +
             '</div>' + 
             '<div class="snippet-buttons" style="width: 30px; height: 80px; position: absolute; top: 0; right: 0">' + 
-            	'<img src="img/fav-button.png" alt="favorite button" class="favorite-button ' + data.favorite + '" onclick="clickFavorite(this)" style="height: 20px; margin: 10px 0">' +
-            	'<img src="img/clipboard.png" alt="clipboard" class="copy-button ' + data.copyable + '" onclick="clickCopy("' + data.copyText + '")" style="height: 20px; margin: 10px 0">' +
+            	'<img src="img/fav-button.png" alt="favorite button" class="favorite-button ' + data.favorite + '" onclick="clickFavorite(this.parentElement.parentElement.id)" style="height: 20px; margin: 10px 0">' +
+            	'<img src="img/clipboard.png" alt="clipboard" class="copy-button ' + data.copyable + '" onclick="clickCopy(\'' + data.copyText + '\')" style="height: 20px; margin: 10px 0">' +
             '</div>' + 
         '</div>';
 	$(resultToAdd).appendTo('#results-list');
 }
 
 function clickFavorite(el) {
-
+    console.log(el);
 }
 
 function clickCopy(v) {
-
+    console.log(v);
 }
 
 function setupArrayEqualsFunction() {

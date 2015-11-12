@@ -78,8 +78,8 @@ function addResult(i) {
             	'<p>' + data.categories + '</p>' +
             '</div>' + 
             '<div class="snippet-buttons" style="width: 30px; height: 80px; position: absolute; top: 0; right: 0">' + 
-            	'<img src="img/fav-button.png" alt="favorite button" class="favorite-button ' + data.favorite + '" onclick="clickFavorite(this.parentElement.parentElement.id)" style="height: 20px; margin: 10px 0">' +
-            	'<img src="img/clipboard.png" alt="clipboard" class="copy-button ' + data.copyable + '" onclick="clickCopy(\'' + data.copyText + '\')" style="height: 20px; margin: 10px 0">' +
+            	'<a><img src="img/fav-button.png" alt="favorite button" class="favorite-button ' + data.favorite + '" onclick="clickFavorite(this.parentElement.parentElement.id)" style="height: 20px; margin: 10px 0"></a>' +
+            	'<a><img src="img/clipboard.png" alt="clipboard" class="copy-button ' + data.copyable + '" onclick="clickCopy(\'' + data.copyText + '\')" style="height: 20px; margin: 10px 0"></a>' +
             '</div>' + 
         '</div>';
 	$(resultToAdd).appendTo('#results-list');

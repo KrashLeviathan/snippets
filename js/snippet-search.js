@@ -1,9 +1,9 @@
 // JavaScript Document
 
-function loadJson() {
+function setupPage() {
 	// Get the full JSON file
-	// fullSnippets = jQuery.getJSON("snippets.json");
-	temporaryFunctionToSetupJson(); // Eventually uncomment the line above
+	fullSnippets = jQuery.getJSON("snippets.json"); // For actual online implementation. Comment out for local testing.
+	//temporaryFunctionToSetupJson(); // For local testing. Comment out for online implementation.
 	
 	// Condense the full JSON into a shorter array to speed up the search
 	shortSnippets = [];
@@ -41,7 +41,6 @@ function updateSearchResults() {
 		return;
 	}
 
-	// TODO: Make empty list
 	var newIndexList = [];
 
 	// Search the JSON for the value from the search bar

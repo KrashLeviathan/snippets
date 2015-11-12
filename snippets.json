@@ -1,8 +1,6 @@
 {"snippets":[
   {"title":"Selection Sort Algorithm",
-	"categories":[
-	  {"category":"Programming"},
-	  {"category":"Java"}],
+	"categories":"Programming, Java",
 	"copyable":"true",
 	"copyText":"Algorithm text here, or link to it",
 	"favorite":"false",
@@ -11,9 +9,7 @@
 	"imageAlt":"Code snippet"},
 
   {"title":"Insertion Sort Algorithm",
-	"categories":[
-	  {"category":"Programming"},
-	  {"category":"Java"}],
+	"categories":"Programming, Java",
 	"copyable":"true",
 	"copyText":"Algorithm text here, or link to it",
 	"favorite":"false",
@@ -22,9 +18,7 @@
 	"imageAlt":"Code snippet"},
 
   {"title":"Merge Sort Algorithm",
-	"categories":[
-	  {"category":"Programming"},
-	  {"category":"Java"}],
+	"categories":"Programming, Java",
 	"copyable":"true",
 	"copyText":"Algorithm text here, or link to it",
 	"favorite":"false",
@@ -33,13 +27,20 @@
 	"imageAlt":"Code snippet"},
 
   {"title":"Quick Sort Algorithm",
-	"categories":[
-	  {"category":"Programming"},
-	  {"category":"Java"}],
+	"categories":"Programming, Java",
 	"copyable":"true",
 	"copyText":"Algorithm text here, or link to it",
 	"favorite":"false",
 	"linkToFull":"http://www.AddTheLinkHere.com",
+	"imageUrl":"img/java-128.png",
+	"imageAlt":"Code snippet"},
+
+  {"title":"Load JSON File Locally",
+	"categories":"Programming, JavaScript",
+	"copyable":"true",
+	"copyText":"_text_resources/load_json_file_locally.txt",
+	"favorite":"false",
+	"linkToFull":"http://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript",
 	"imageUrl":"img/java-128.png",
 	"imageAlt":"Code snippet"}
 ]}

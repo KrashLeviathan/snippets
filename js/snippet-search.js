@@ -8,15 +8,7 @@ function setupPage() {
 		// Condense the full JSON into a shorter array to speed up the search
 		shortSnippets = [];
 		$.each(fullSnippets.snippets, function(i, v) {
-			var categoryText = "";
-			$.each(v.categories, function(j, w) {
-				categoryText += w.category + " ";
-			});
-			shortSnippets.push(
-				v.title + " " + categoryText
-			);
-			shortSnippets[i].text = v.title + " " + categoryText;
-			shortSnippets[i].index = i;
+			shortSnippets.push(v.title + "; " + v.categories);
 		});
 	});
 	
@@ -82,15 +74,23 @@ function addResult(i) {
 	var resultToAdd = '<div class="result-item panel" style="position: relative">' + 
         	'<img src="' + data.imageUrl + '" alt="' + data.imageAlt + '" style="height: 80px; width: 80px; margin-right: 20px; float: left">' + 
             '<div class="snippet-details" style="margin-right: 40px">' + 
-            	'<h3>' + data.title + '</h3>' +
-            	'<p>' + data.categories[0].category + '</p>' +
+            	'<a href="' + data.linkToFull + '" target="_blank"><h3>' + data.title + '</h3></a>' +
+            	'<p>' + data.categories + '</p>' +
             '</div>' + 
             '<div class="snippet-buttons" style="width: 30px; height: 80px; position: absolute; top: 0; right: 0">' + 
-            	'<img src="img/fav-button.png" alt="favorite button" class="favorite-button ' + data.favorite + '" style="height: 20px; margin: 10px 0">' + 
-            	'<img src="img/clipboard.png" alt="clipboard" class="copy-button ' + data.copyable + '" style="height: 20px; margin: 10px 0">' + 
+            	'<img src="img/fav-button.png" alt="favorite button" class="favorite-button ' + data.favorite + '" onclick="clickFavorite(this)" style="height: 20px; margin: 10px 0">' +
+            	'<img src="img/clipboard.png" alt="clipboard" class="copy-button ' + data.copyable + '" onclick="clickCopy("' + data.copyText + '")" style="height: 20px; margin: 10px 0">' +
             '</div>' + 
         '</div>';
 	$(resultToAdd).appendTo('#results-list');
+}
+
+function clickFavorite(el) {
+
+}
+
+function clickCopy(v) {
+
 }
 
 function setupArrayEqualsFunction() {

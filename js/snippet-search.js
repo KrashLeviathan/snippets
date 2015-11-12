@@ -9,20 +9,19 @@ function setupPage() {
 	loadJSON(function(response) {
 		// Parse JSON string into object
 		fullSnippets = JSON.parse(response);
-	});
-
-	// Condense the full JSON into a shorter array to speed up the search
-	shortSnippets = [];
-	$.each(fullSnippets.snippets, function(i, v) {
-		var categoryText = "";
-		$.each(v.categories, function(j, w) {
-			categoryText += w.category + " ";
+		// Condense the full JSON into a shorter array to speed up the search
+		shortSnippets = [];
+		$.each(fullSnippets.snippets, function(i, v) {
+			var categoryText = "";
+			$.each(v.categories, function(j, w) {
+				categoryText += w.category + " ";
+			});
+			shortSnippets.push(
+				v.title + " " + categoryText
+			);
+			shortSnippets[i].text = v.title + " " + categoryText;
+			shortSnippets[i].index = i;
 		});
-		shortSnippets.push(
-			v.title + " " + categoryText
-		);
-		shortSnippets[i].text = v.title + " " + categoryText;
-		shortSnippets[i].index = i;
 	});
 	
 	// Initialize an empy array of the items currently displayed in the list

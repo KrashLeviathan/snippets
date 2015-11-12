@@ -1,11 +1,7 @@
 // JavaScript Document
 
 function setupPage() {
-	// Get the full JSON file
-	//fullSnippets = jQuery.getJSON("snippets.json", function(data) {
-	//	return data;
-	//}); // For actual online implementation. Comment out for local testing.
-	//temporaryFunctionToSetupJson(); // For local testing. Comment out for online implementation.
+	// Get the JSON file
 	loadJSON(function(response) {
 		// Parse JSON string into object
 		fullSnippets = JSON.parse(response);
@@ -142,52 +138,4 @@ function loadJSON(callback) {
 		}
 	};
 	xobj.send(null);
-}
-
-function temporaryFunctionToSetupJson() {
-	fullSnippets = {"snippets":[
-	{"title":"Selection Sort Algorithm",
-	"categories":[
-		{"category":"Programming"},
-		{"category":"Java"}],
-	"copyable":"true",
-	"copyText":"Algorithm text here, or link to it",
-	"favorite":"false",
-	"linkToFull":"http://www.AddTheLinkHere.com",
-	"imageUrl":"img/java-128.png",
-	"imageAlt":"Code snippet"},
-	
-	{"title":"Insertion Sort Algorithm",
-	"categories":[
-		{"category":"Programming"},
-		{"category":"Java"}],
-	"copyable":"true",
-	"copyText":"Algorithm text here, or link to it",
-	"favorite":"false",
-	"linkToFull":"http://www.AddTheLinkHere.com",
-	"imageUrl":"img/java-128.png",
-	"imageAlt":"Code snippet"},
-	
-	{"title":"Merge Sort Algorithm",
-	"categories":[
-		{"category":"Programming"},
-		{"category":"Java"}],
-	"copyable":"true",
-	"copyText":"Algorithm text here, or link to it",
-	"favorite":"false",
-	"linkToFull":"http://www.AddTheLinkHere.com",
-	"imageUrl":"img/java-128.png",
-	"imageAlt":"Code snippet"},
-	
-	{"title":"Quick Sort Algorithm",
-	"categories":[
-		{"category":"Programming"},
-		{"category":"Java"}],
-	"copyable":"true",
-	"copyText":"Algorithm text here, or link to it",
-	"favorite":"false",
-	"linkToFull":"http://www.AddTheLinkHere.com",
-	"imageUrl":"img/java-128.png",
-	"imageAlt":"Code snippet"}
-	]};
 }

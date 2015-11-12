@@ -2,7 +2,11 @@
 
 function setupPage() {
 	// Get the full JSON file
-	fullSnippets = jQuery.getJSON("snippets.json").responseJSON; // For actual online implementation. Comment out for local testing.
+	fullSnippets = jQuery.getJSON("snippets.json", function(data) {
+		console.log(data);
+		console.log(data.responseJSON);
+		return data.responseJSON;
+	}); // For actual online implementation. Comment out for local testing.
 	//temporaryFunctionToSetupJson(); // For local testing. Comment out for online implementation.
 	
 	// Condense the full JSON into a shorter array to speed up the search

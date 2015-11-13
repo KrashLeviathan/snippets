@@ -38,9 +38,18 @@
   {"title":"Load JSON File Locally",
 	"categories":"Programming, JavaScript",
 	"copyable":"true",
-	"copyText":"_text_resources/load_json_file_locally.txt",
+	"copyText":"_text_resources/load-json-file-locally.txt",
 	"favorite":"false",
 	"linkToFull":"http://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript",
 	"imageUrl":"img/java-128.png",
-	"imageAlt":"Code snippet"}
+	"imageAlt":"Code snippet"},
+
+  {"title":"Keep Footer at Page Bottom",
+      "categories":"Programming, CSS",
+      "copyable":"true",
+      "copyText":"_text_resources/keep-footer-at-page-bottom.txt",
+      "favorite":"false",
+      "linkToFull":"http://cssreset.com/how-to-keep-footer-at-bottom-of-page-with-css/",
+      "imageUrl":"img/java-128.png",
+      "imageAlt":"Code snippet"}
 ]}

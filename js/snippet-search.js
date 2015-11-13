@@ -12,51 +12,62 @@ function setupPage() {
 		});
 	});
 	
-	// Initialize an empy array of the items currently displayed in the list
+	// Initialize variables
 	currentIndexList = [];
 	resultsListElement = document.getElementById("results-list");
+	timeoutCounter = 0;
 	
 	// Create function to compare arrays (http://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript)
 	setupArrayEqualsFunction();
+	// Cycle through placeholders for the text field when it's empty
 	setupTextFieldPlaceholder();
 }
 
 function updateSearchResults() {
-	// TODO: Wait for timeout before updating
-	
-	// Get the text from the search bar
-	var val = document.getElementById("search-bar").value;
-	
-	// Remove all items if there is no value in the search bar
-	if (val === "") {
-		currentIndexList = [];
-		clearResults();
-		document.getElementById("no-items-in-list").style.display = "none";
-		return;
-	}
+	timeoutCounter++;
+	var fastInputTimer = setTimeout(waitForFastInput, 250);
+	function waitForFastInput() {
+		// If the user is typing fast, wait to update until they pause
+		timeoutCounter--;
+		if (timeoutCounter < 0)
+			timeoutCounter = 0;
+		if (timeoutCounter > 0)
+			return;
 
-	var newIndexList = [];
+		// Get the text from the search bar
+		var val = document.getElementById("search-bar").value;
 
-	// Search the JSON for the value from the search bar
-	// Add matching items from the JSON to a new list
-	$.each(shortSnippets, function(i, v) {
-		if (v.search(new RegExp(val, "i")) != -1) {
-			newIndexList.push(i);
-		}
-	});
-	
-	// Compare the list that was generated to the current list and update the list if necessary
-	if (!currentIndexList.equals(newIndexList)) {
-		currentIndexList = newIndexList;
-		clearResults();
-		if (newIndexList.length == 0) {
-			document.getElementById("no-items-in-list").style.display = "";
+		// Remove all items if there is no value in the search bar
+		if (val === "") {
+			currentIndexList = [];
+			clearResults();
+			document.getElementById("no-items-in-list").style.display = "none";
 			return;
 		}
-		document.getElementById("no-items-in-list").style.display = "none";
-		$.each(newIndexList, function(i, v) {
-			addResult(v);
+
+		var newIndexList = [];
+
+		// Search the JSON for the value from the search bar
+		// Add matching items from the JSON to a new list
+		$.each(shortSnippets, function(i, v) {
+			if (v.search(new RegExp(val, "i")) != -1) {
+				newIndexList.push(i);
+			}
 		});
+
+		// Compare the list that was generated to the current list and update the list if necessary
+		if (!currentIndexList.equals(newIndexList)) {
+			currentIndexList = newIndexList;
+			clearResults();
+			if (newIndexList.length == 0) {
+				document.getElementById("no-items-in-list").style.display = "";
+				return;
+			}
+			document.getElementById("no-items-in-list").style.display = "none";
+			$.each(newIndexList, function(i, v) {
+				addResult(v);
+			});
+		}
 	}
 }
 
@@ -143,7 +154,7 @@ function loadJSON(callback) {
 
 function setupTextFieldPlaceholder() {
 	// set interval
-	var tid = setInterval(getNextTFP, 1500);
+	setInterval(getNextTFP, 1500);
 	// text field placeholders
 	tfp = [
 			"Quick Sort",

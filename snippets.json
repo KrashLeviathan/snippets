@@ -51,5 +51,14 @@
       "favorite":"false",
       "linkToFull":"http://cssreset.com/how-to-keep-footer-at-bottom-of-page-with-css/",
       "imageUrl":"img/java-128.png",
-      "imageAlt":"Code snippet"}
+      "imageAlt":"Code snippet"},
+
+  {"title":"JavaScript Timers",
+    "categories":"Programming, JavaScript",
+    "copyable":"true",
+    "copyText":"_text_resources/javascript-timers.txt",
+    "favorite":"false",
+    "linkToFull":"http://stackoverflow.com/questions/2133166/loop-timer-in-javascript",
+    "imageUrl":"img/java-128.png",
+    "imageAlt":"Code snippet"}
 ]}

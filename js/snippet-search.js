@@ -18,6 +18,7 @@ function setupPage() {
 	
 	// Create function to compare arrays (http://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript)
 	setupArrayEqualsFunction();
+	setupTextFieldPlaceholder();
 }
 
 function updateSearchResults() {
@@ -138,4 +139,26 @@ function loadJSON(callback) {
 		}
 	};
 	xobj.send(null);
+}
+
+function setupTextFieldPlaceholder() {
+	// set interval
+	var tid = setInterval(getNextTFP, 1500);
+	// text field placeholders
+	tfp = [
+			"Quick Sort",
+			"Splay Trees",
+			"Load JSON",
+			"Sticky Footer",
+			"Inspirational Quote"
+	];
+	tfpi = 0;
+	function getNextTFP() {
+		if (tfpi == tfp.length - 1) {
+			tfpi = 0;
+		} else {
+			tfpi++;
+		}
+		$("#search-bar").attr("placeholder", tfp[tfpi]);
+	}
 }

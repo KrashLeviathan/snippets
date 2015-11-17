@@ -1,0 +1,9 @@
+name: snippets
+version: 1.0.0
+description: >
+  A search agent for a collection of useful things.
+author: Nathan Karasch <nathan_karasch@hotmail.com>
+homepage: http://krashleviathan.github.io/snippets/
+documentation: https://github.com/KrashLeviathan/snippets
+dependencies:
+  json_object: "^1.0.19"

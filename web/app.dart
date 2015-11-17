@@ -1,6 +1,5 @@
 import 'dart:html';
 import 'dart:async';
-import 'dart:convert';
 import 'package:json_object/json_object.dart';
 
 // The list of index numbers from the snippets list of which snippets are being
@@ -9,13 +8,13 @@ List<int> currentIndexList = [];
 // Frequently used html elements
 HtmlElement resultsListElement = querySelector('#results-list');
 HtmlElement noItemsElement = querySelector('#no-items-in-list');
-HtmlElement searchBarElement = querySelector('#search-bar');
-// Used to
+InputElement searchBarElement = querySelector('#search-bar');
+// Used for fast typing search pause
 int timeoutCounter = 0;
 
 // From the JSON file snippets.json
-List fullSnippets;
-List<String> shortSnippets;
+var fullSnippets;
+List<String> shortSnippets = [];
 
 // Text Field Placeholder strings
 List<String> tfp = [
@@ -55,7 +54,7 @@ void _updateSearchResults(Event e) {
     if (timeoutCounter > 0) return;
 
     // Get the text from the search bar
-    String val = searchBarElement.text;
+    String val = searchBarElement.value;
 
     // Remove all items if there is no value in the search bar
     if (val == "") {
@@ -101,30 +100,73 @@ void _clearResults() {
 // Adds a result item to the page
 // The parameter i is the index of the item in the snippets.json file
 void _addResult(i) {
-  var data = fullSnippets[1][i];
-  var resultToAdd = '<div id="result-index-' +
-      i +
-      '" class="result-item panel" style="position: relative"><img src="' +
-      data.imageUrl +
-      '" alt="' +
-      data.imageAlt +
-      '" style="height: 80px; width: 80px; margin-right: 20px; float: left"><div class="snippet-details" style="margin-right: 40px"><a href="' +
-      data.linkToFull +
-      '" target="_blank"><h3>' +
-      data.title +
-      '</h3></a><p>' +
-      data.categories +
-      '</p></div><div class="snippet-buttons" style="width: 30px; height: 80px; position: absolute; top: 0; right: 0"><a><img src="img/fav-button.png" alt="favorite button" class="favorite-button ' +
-      data.favorite +
-      '" style="height: 20px; margin: 10px 0"></a><a><img src="img/clipboard.png" alt="clipboard" class="copy-button ' +
-      data.copyable +
-      '" style="height: 20px; margin: 10px 0"></a></div></div>';
-  resultsListElement.appendHtml(resultToAdd);
-//  onclick="clickFavorite(this.parentElement.parentElement.id)"
-//
-//  onclick="clickCopy(\'' +
-//  data.copyText +
-//      '\')"
+  var data = fullSnippets[i];
+
+  // TODO: Move all CSS into styles file
+
+  DivElement resultItem = new DivElement()
+  ..id="result-index-"+i.toString()
+  ..className="result-item panel"
+  ..style.position="relative";
+
+  ImageElement resultImage = new ImageElement(src: data.imageUrl, width: 80, height: 80)
+  ..alt=data.imageAlt
+  ..style.marginRight="20px"
+  ..style.float="left";
+  resultItem.children.add(resultImage);
+
+  DivElement snippetDetails = new DivElement()
+  ..className="snippet-details"
+  ..style.marginRight="40px";
+  resultItem.children.add(snippetDetails);
+
+  AnchorElement linkToFull = new AnchorElement(href: data.linkToFull)
+  ..target="_blank";
+  snippetDetails.children.add(linkToFull);
+
+  HeadingElement h3 = new HeadingElement.h3()
+  ..setInnerHtml(data.title);
+  linkToFull.children.add(h3);
+
+  ParagraphElement categories = new ParagraphElement()
+  ..setInnerHtml(data.categories);
+  snippetDetails.children.add(categories);
+
+  DivElement snippetButtons = new DivElement()
+  ..style.width="30px"
+  ..style.height="80px"
+  ..style.position="absolute"
+  ..style.top="0"
+  ..style.right="0";
+  resultItem.children.add(snippetButtons);
+
+  AnchorElement anchorFav = new AnchorElement();
+  snippetButtons.children.add(anchorFav);
+
+  ImageElement imageFav = new ImageElement(src: "img/fav-button.png")
+  ..alt="favorite button"
+  ..className="favorite-button " + data.favorite
+  ..onClick.listen((e) {
+    print("clicked favorite");
+  })
+  ..style.height="20px"
+  ..style.margin="10px 0";
+  anchorFav.children.add(imageFav);
+
+  AnchorElement anchorCopy = new AnchorElement();
+  snippetButtons.children.add(anchorCopy);
+
+  ImageElement imageCopy = new ImageElement(src: "img/clipboard.png")
+    ..alt="clipboard"
+    ..className="copy-button " + data.favorite
+    ..onClick.listen((e) {
+      print("clicked copy");
+    })
+    ..style.height="20px"
+    ..style.margin="10px 0";
+  anchorCopy.children.add(imageCopy);
+
+  resultsListElement.children.add(resultItem);
 }
 
 bool _compare(List<int> a, List<int> b) {
@@ -146,12 +188,10 @@ void _loadJSON() {
 
   // call the web server asynchronously
   HttpRequest.getString(url).then((String responseText) {
-    fullSnippets = JSON.decode(responseText);
-    print(responseText);
-    print(fullSnippets);
-    print("*** JsonObject test ***");
-    var snippetsJson = new JsonObject.fromJsonString(responseText);
-    print(snippetsJson.snippets[0].title);
+    fullSnippets = (new JsonObject.fromJsonString(responseText)).snippets;
+    for (int i = 0; i < fullSnippets.length; i++) {
+      shortSnippets.add(fullSnippets[i].title + '; ' + fullSnippets[i].categories);
+    }
   });
 }
 

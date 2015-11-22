@@ -1,0 +1,18 @@
+// set timeout (one-time timer)
+var tid = setTimeout(mycode, 2000);
+function mycode() {
+  // do some stuff...
+}
+function abortTimer() { // to be called when you want to stop the timer
+  clearTimeout(tid);
+}
+
+
+// set interval (loops continuously until aborted)
+var tid = setInterval(mycode, 2000);
+function mycode() {
+  // do some stuff...
+}
+function abortTimer() { // to be called when you want to stop the timer
+  clearInterval(tid);
+}

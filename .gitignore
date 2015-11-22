@@ -49,3 +49,4 @@ bin/
 *.war
 *.ear
 *.iml
+.packages

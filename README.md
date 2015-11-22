@@ -18,6 +18,7 @@ If you want to use the design and everything, be my guest. Just fork the repo an
 |-- img
 |   |-- fav-button.png
 |   |-- copy-button.png
+|   |-- no-items-in-list.jpg
 ```
 
 #### Setup your page with the following elements
@@ -34,7 +35,7 @@ If you want to use the design and everything, be my guest. Just fork the repo an
     <div id="results-list">
     </div>
     <div id="no-items-in-list" class="panel">
-        <img src="img/empty-pocket.jpg" alt="empty pockets">
+        <img src="img/no-items-in-list.jpg" alt="empty pockets">
         <div class="snippet-details">
             <h3>No luck...</h3>
             <p>Try <a href="#">searching deeper</a> to get more results.</p>

@@ -70,3 +70,26 @@ body {
     padding: 20px 0;
   }
 }
+.result-item {
+  position: relative;
+}
+.snippet-icon {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  float: left;
+}
+.snippet-details {
+  margin-right: 40px;
+}
+.snippet-buttons {
+  width: 30px;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.favorite-button, .copy-button {
+  height: 20px;
+  margin: 10px 0;
+}

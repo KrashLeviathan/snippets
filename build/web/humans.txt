@@ -1,8 +1,23 @@
-/* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA */
-/* zurb.com */
-/* humanstxt.org */
+# Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA
+# zurb.com
+# humanstxt.org
+# The humans responsible & technology colophon
 
-/* SITE */
+# TEAM
+
+    Nathan Karasch -- Designer/Developer -- @KrashLeviathan
+
+# THANKS
+
+    To my wife and son for putting up with me.
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
+
+# SITE
+
   Standards: HTML5, CSS3
-  Components: jQuery, Orbit, Reveal
-  Software: Sublime, Git, Sass
+  Components: jQuery, Modernizr, Foundation, Normalize.css
+  Software: WebStorm, Git, Sass, Dart

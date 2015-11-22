@@ -102,22 +102,17 @@ void _clearResults() {
 void _addResult(i) {
   var data = fullSnippets[i];
 
-  // TODO: Move all CSS into styles file
-
   DivElement resultItem = new DivElement()
   ..id="result-index-"+i.toString()
-  ..className="result-item panel"
-  ..style.position="relative";
+  ..className="result-item panel";
 
-  ImageElement resultImage = new ImageElement(src: data.imageUrl, width: 80, height: 80)
-  ..alt=data.imageAlt
-  ..style.marginRight="20px"
-  ..style.float="left";
+  ImageElement resultImage = new ImageElement(src: data.imageUrl)
+  ..className="snippet-icon"
+  ..alt=data.imageAlt;
   resultItem.children.add(resultImage);
 
   DivElement snippetDetails = new DivElement()
-  ..className="snippet-details"
-  ..style.marginRight="40px";
+  ..className="snippet-details";
   resultItem.children.add(snippetDetails);
 
   AnchorElement linkToFull = new AnchorElement(href: data.linkToFull)
@@ -133,11 +128,7 @@ void _addResult(i) {
   snippetDetails.children.add(categories);
 
   DivElement snippetButtons = new DivElement()
-  ..style.width="30px"
-  ..style.height="80px"
-  ..style.position="absolute"
-  ..style.top="0"
-  ..style.right="0";
+  ..className="snippet-buttons";
   resultItem.children.add(snippetButtons);
 
   AnchorElement anchorFav = new AnchorElement();
@@ -148,22 +139,18 @@ void _addResult(i) {
   ..className="favorite-button " + data.favorite
   ..onClick.listen((e) {
     print("clicked favorite");
-  })
-  ..style.height="20px"
-  ..style.margin="10px 0";
+  });
   anchorFav.children.add(imageFav);
 
   AnchorElement anchorCopy = new AnchorElement();
   snippetButtons.children.add(anchorCopy);
 
-  ImageElement imageCopy = new ImageElement(src: "img/clipboard.png")
-    ..alt="clipboard"
+  ImageElement imageCopy = new ImageElement(src: "img/copy-button.png")
+    ..alt="copy button"
     ..className="copy-button " + data.favorite
     ..onClick.listen((e) {
       print("clicked copy");
-    })
-    ..style.height="20px"
-    ..style.margin="10px 0";
+    });
   anchorCopy.children.add(imageCopy);
 
   resultsListElement.children.add(resultItem);

@@ -23,37 +23,24 @@ If you want to use the design and everything, be my guest. Just fork the repo an
 #### Setup your page with the following elements
 
 ```html
-<div id="search-bar-container" class="row">
-        <div class="large-12 columns">
-            <form>
-                <div class="row">
-                    <div class="medium-8 large-9 columns">
-                        <label id="search-label">Search</label>
-                        <br>
-                        <input type="text" id="search-bar" placeholder="Splay Trees">
-                    </div>
-                    <div class="medium-4 large-3 columns" style="padding-top: 10px">
-                        <input type="submit" class="small radius button" value="Search deeper...">
-                    </div>
-                </div>
-            </form>
+<div id="search-bar-container">
+    <form>
+        <label id="search-label">Search</label>
+        <input type="text" id="search-bar" placeholder="Splay Trees">
+        <input type="submit" class="small radius button" value="Search deeper...">
+    </form>
+</div>
+<div id="results-container">
+    <div id="results-list">
+    </div>
+    <div id="no-items-in-list" class="panel">
+        <img src="img/empty-pocket.jpg" alt="empty pockets">
+        <div class="snippet-details">
+            <h3>No luck...</h3>
+            <p>Try <a href="#">searching deeper</a> to get more results.</p>
         </div>
     </div>
-    <div id="results-container" class="row">
-        <div class="large-12 columns">
-            <div id="results-list">
-            </div>
-            <div id="no-items-in-list" class="panel" style="position: relative; display: none">
-                <img src="img/empty-pocket.jpg" alt="empty pockets">
-
-                <div class="snippet-details">
-                    <h3>No luck...</h3>
-
-                    <p>Try <a href="#">searching deeper</a> to get more results.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 ```
 
 #### For styling purposes, the search results have the following form

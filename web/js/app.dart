@@ -42,7 +42,35 @@ void clickFavorite(MouseEvent e) {
 }
 
 void clickCopy(MouseEvent e) {
-  print("Clicked copy for " + e.target.blink_jsObject.id);
+  // Gets the img element
+  var el = e.target;
+
+  // Get the result index from the result's parent div id
+  int resultIndex = int.parse(el.parent.parent.parent.id.substring(13));
+
+  // Get the path for the txt file we want to copy from
+  var copyTextPath = "../" + fullSnippets[resultIndex].copyText;
+
+  // Fetch the txt file and copy to clipboard
+  HttpRequest.getString(copyTextPath)
+      .then((String fileContents) {
+    // Create a "hidden" input
+    var aux = document.createElement("input");
+    // Assign it the value of the specified element
+    aux.setAttribute("value", fileContents);
+    // Append it to the body
+    document.body.children.add(aux);
+    // Highlight its content
+    aux.select();
+    // Copy the highlighted text
+    document.execCommand("copy", false, "Copying text to clipboard...");
+    // Remove it from the body
+    document.body.children.removeLast();
+    // FIXME - Make it so the text has line breaks like in the file, and test to see which browsers this hack works in
+  })
+      .catchError((Error error) {
+    print(error.toString());
+  });
 }
 
 void _updateSearchResults(Event e) {

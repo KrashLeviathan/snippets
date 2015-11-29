@@ -81,4 +81,25 @@ body {
   left: -50px;
   top: -50px; }
 
+.flag {
+  background: #2E3840;
+  color: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  padding: 8px;
+  height: 40px;
+  position: absolute;
+  right: 40px;
+  /* Fade-Out Effect */ }
+  .flag.copy-flag {
+    top: 40px; }
+  .flag.fav-flag {
+    top: 0; }
+  .flag.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1.5s, opacity 1.5s ease-in-out; }
+
 /*# sourceMappingURL=styles.css.map */

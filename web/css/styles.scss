@@ -10,8 +10,12 @@ $postit-green: #74BF3F;
 $postit-yellow: #FFEF00;
 
 /* MIX-INS */
-
-
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
 
 /* STYLES */
 
@@ -100,4 +104,27 @@ body {
   position: absolute;
   left: -50px;
   top: -50px;
+}
+.flag {
+  background: $dark-neutral;
+  color: white;
+  @include border-radius(3px);
+  padding: 8px;
+  height: 40px;
+  position: absolute;
+  right: 40px;
+
+  &.copy-flag {
+    top: 40px;
+  }
+  &.fav-flag {
+    top: 0;
+  }
+
+  /* Fade-Out Effect */
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1.5s, opacity 1.5s ease-in-out;
+  }
 }

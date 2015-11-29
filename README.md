@@ -68,7 +68,7 @@ clipboard-helper is the first child element in the wrapper, and has the followin
 That keeps it out of sight, but you can still copy from it. Make sure you *dont't* set `border: 0`, `display: none`,
 or `visibility: hidden`, because then you wont't be able to copy from it.
 
-#### For styling purposes, the search results have the following form
+#### Style the search results, which have the following form
 
 ```html
 <div id="result-index-1" class="result-item panel">
@@ -89,3 +89,8 @@ or `visibility: hidden`, because then you wont't be able to copy from it.
     </div>
 </div>
 ```
+
+#### Style the clipboard and favorite flags
+
+A small flag pops up momentarily when you click the copy or favorites buttons. You need to at least style it
+with some sort of fade-out transition. Otherwise, flags won't be removed from the DOM.

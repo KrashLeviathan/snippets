@@ -56,9 +56,24 @@ void clickCopy(MouseEvent e) {
     clipboardHelper.select();
     // Copy the selected text
     document.execCommand("copy", false, "Copying text to clipboard...");
+    // Show copy flag
+    _showCopyFlag(el.parent.parent.parent);
   })
       .catchError((Error error) {
     print(error.toString());
+  });
+}
+
+void _showCopyFlag(HtmlElement el) {
+  DivElement flag = new DivElement()
+      ..className="flag copy-flag"
+      ..innerHtml="Copied!";
+  el.children.add(flag);
+  flag.onTransitionEnd.listen((_) {
+    flag.remove();
+  });
+  new Timer(new Duration(milliseconds: 500), () {
+    flag.classes.add("hidden");
   });
 }
 

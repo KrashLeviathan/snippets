@@ -24,6 +24,9 @@ If you want to use the design and everything, be my guest. Just fork the repo an
 #### Setup your page with the following elements
 
 ```html
+...
+<textarea id="clipboard-helper"></textarea>
+...
 <div id="search-bar-container">
     <form>
         <label id="search-label">Search</label>
@@ -31,6 +34,7 @@ If you want to use the design and everything, be my guest. Just fork the repo an
         <input type="submit" class="small radius button" value="Search deeper...">
     </form>
 </div>
+...
 <div id="results-container">
     <div id="results-list">
     </div>
@@ -42,7 +46,27 @@ If you want to use the design and everything, be my guest. Just fork the repo an
         </div>
     </div>
 </div>
+...
 ```
+
+#### Style the clipboard-helper textarea so it's out of sight.
+
+For my project, I have a wrapper `div` for the page content, and the wrapper's `position` is relative. The
+clipboard-helper is the first child element in the wrapper, and has the following css styles:
+
+```css
+#clipboard-helper {
+  width: 0;
+  height: 0;
+  padding: 0;
+  position: absolute;
+  left: -50px;
+  top: -50px;
+}
+```
+
+That keeps it out of sight, but you can still copy from it. Make sure you *dont't* set `border: 0`, `display: none`,
+or `visibility: hidden`, because then you wont't be able to copy from it.
 
 #### For styling purposes, the search results have the following form
 

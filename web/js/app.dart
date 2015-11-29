@@ -9,6 +9,7 @@ List<int> currentIndexList = [];
 HtmlElement resultsListElement = querySelector('#results-list');
 HtmlElement noItemsElement = querySelector('#no-items-in-list');
 InputElement searchBarElement = querySelector('#search-bar');
+TextAreaElement clipboardHelper = querySelector('#clipboard-helper');
 // Used for fast typing search pause
 int timeoutCounter = 0;
 
@@ -52,21 +53,14 @@ void clickCopy(MouseEvent e) {
   var copyTextPath = "../" + fullSnippets[resultIndex].copyText;
 
   // Fetch the txt file and copy to clipboard
-  HttpRequest.getString(copyTextPath)
-      .then((String fileContents) {
-    // Create a "hidden" input
-    var aux = document.createElement("input");
-    // Assign it the value of the specified element
-    aux.setAttribute("value", fileContents);
-    // Append it to the body
-    document.body.children.add(aux);
-    // Highlight its content
-    aux.select();
-    // Copy the highlighted text
+  HttpRequest.request(copyTextPath)
+      .then((fileContents) {
+    // Set contents of the clipboard helper
+    clipboardHelper.innerHtml = fileContents.responseText;
+    // Select its content
+    clipboardHelper.select();
+    // Copy the selected text
     document.execCommand("copy", false, "Copying text to clipboard...");
-    // Remove it from the body
-    document.body.children.removeLast();
-    // FIXME - Make it so the text has line breaks like in the file, and test to see which browsers this hack works in
   })
       .catchError((Error error) {
     print(error.toString());

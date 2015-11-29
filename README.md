@@ -65,7 +65,7 @@ clipboard-helper is the first child element in the wrapper, and has the followin
 }
 ```
 
-That keeps it out of sight, but you can still copy from it. Make sure you *dont't* set `border: 0`, `display: none`,
+That keeps it out of sight, but you can still copy from it. Make sure you *don't* set `border: 0`, `display: none`,
 or `visibility: hidden`, because then you wont't be able to copy from it.
 
 #### Style the search results, which have the following form

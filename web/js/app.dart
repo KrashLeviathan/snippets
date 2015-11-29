@@ -37,12 +37,12 @@ void main() {
   searchBarElement.onInput.listen(_updateSearchResults);
 }
 
-void clickFavorite(el) {
-  print(el);
+void clickFavorite(MouseEvent e) {
+  print("Clicked favorite");
 }
 
-void clickCopy(v) {
-  print(v);
+void clickCopy(MouseEvent e) {
+  print("Clicked copy for " + e.target.blink_jsObject.id);
 }
 
 void _updateSearchResults(Event e) {
@@ -137,9 +137,7 @@ void _addResult(i) {
   ImageElement imageFav = new ImageElement(src: "img/fav-button.png")
   ..alt="favorite button"
   ..className="favorite-button " + data.favorite
-  ..onClick.listen((e) {
-    print("clicked favorite");
-  });
+  ..onClick.listen(clickFavorite);
   anchorFav.children.add(imageFav);
 
   AnchorElement anchorCopy = new AnchorElement();
@@ -148,9 +146,7 @@ void _addResult(i) {
   ImageElement imageCopy = new ImageElement(src: "img/copy-button.png")
     ..alt="copy button"
     ..className="copy-button " + data.favorite
-    ..onClick.listen((e) {
-      print("clicked copy");
-    });
+    ..onClick.listen(clickCopy);
   anchorCopy.children.add(imageCopy);
 
   resultsListElement.children.add(resultItem);

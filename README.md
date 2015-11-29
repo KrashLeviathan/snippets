@@ -24,6 +24,9 @@ If you want to use the design and everything, be my guest. Just fork the repo an
 #### Setup your page with the following elements
 
 ```html
+...
+<textarea id="clipboard-helper"></textarea>
+...
 <div id="search-bar-container">
     <form>
         <label id="search-label">Search</label>
@@ -31,6 +34,7 @@ If you want to use the design and everything, be my guest. Just fork the repo an
         <input type="submit" class="small radius button" value="Search deeper...">
     </form>
 </div>
+...
 <div id="results-container">
     <div id="results-list">
     </div>
@@ -42,9 +46,29 @@ If you want to use the design and everything, be my guest. Just fork the repo an
         </div>
     </div>
 </div>
+...
 ```
 
-#### For styling purposes, the search results have the following form
+#### Style the clipboard-helper textarea so it's out of sight.
+
+For my project, I have a wrapper `div` for the page content, and the wrapper's `position` is relative. The
+clipboard-helper is the first child element in the wrapper, and has the following css styles:
+
+```css
+#clipboard-helper {
+  width: 0;
+  height: 0;
+  padding: 0;
+  position: absolute;
+  left: -50px;
+  top: -50px;
+}
+```
+
+That keeps it out of sight, but you can still copy from it. Make sure you *don't* set `border: 0`, `display: none`,
+or `visibility: hidden`, because then you wont't be able to copy from it.
+
+#### Style the search results, which have the following form
 
 ```html
 <div id="result-index-1" class="result-item panel">
@@ -65,3 +89,8 @@ If you want to use the design and everything, be my guest. Just fork the repo an
     </div>
 </div>
 ```
+
+#### Style the clipboard and favorite flags
+
+A small flag pops up momentarily when you click the copy or favorites buttons. You need to at least style it
+with some sort of fade-out transition. Otherwise, flags won't be removed from the DOM.

@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:math';
 import 'dart:async';
 import 'package:json_object/json_object.dart';
 
@@ -9,6 +10,7 @@ List<int> currentIndexList = [];
 HtmlElement resultsListElement = querySelector('#results-list');
 HtmlElement noItemsElement = querySelector('#no-items-in-list');
 InputElement searchBarElement = querySelector('#search-bar');
+TextAreaElement clipboardHelper = querySelector('#clipboard-helper');
 // Used for fast typing search pause
 int timeoutCounter = 0;
 
@@ -17,14 +19,8 @@ var fullSnippets;
 List<String> shortSnippets = [];
 
 // Text Field Placeholder strings
-List<String> tfp = [
-  "Splay Trees",
-  "Quick Sort",
-  "Load JSON",
-  "Sticky Footer",
-  "Inspirational Quote"
-];
-int tfpi = 0;
+List<String> tfp = [];
+Random rand = new Random();
 
 void main() {
   // Get the JSON file
@@ -37,12 +33,48 @@ void main() {
   searchBarElement.onInput.listen(_updateSearchResults);
 }
 
-void clickFavorite(el) {
-  print(el);
+void clickFavorite(MouseEvent e) {
+  print("Clicked favorite");
 }
 
-void clickCopy(v) {
-  print(v);
+void clickCopy(MouseEvent e) {
+  // Gets the img element
+  var el = e.target;
+
+  // Get the result index from the result's parent div id
+  int resultIndex = int.parse(el.parent.parent.parent.id.substring(13));
+
+  // Get the path for the txt file we want to copy from
+  var copyTextPath = "../" + fullSnippets[resultIndex].copyText;
+
+  // Fetch the txt file and copy to clipboard
+  HttpRequest.request(copyTextPath)
+      .then((fileContents) {
+    // Set contents of the clipboard helper
+    clipboardHelper.innerHtml = fileContents.responseText;
+    // Select its content
+    clipboardHelper.select();
+    // Copy the selected text
+    document.execCommand("copy", false, "Copying text to clipboard...");
+    // Show copy flag
+    _showCopyFlag(el.parent.parent.parent);
+  })
+      .catchError((Error error) {
+    print(error.toString());
+  });
+}
+
+void _showCopyFlag(HtmlElement el) {
+  DivElement flag = new DivElement()
+      ..className="flag copy-flag"
+      ..innerHtml="Copied!";
+  el.children.add(flag);
+  flag.onTransitionEnd.listen((_) {
+    flag.remove();
+  });
+  new Timer(new Duration(milliseconds: 500), () {
+    flag.classes.add("hidden");
+  });
 }
 
 void _updateSearchResults(Event e) {
@@ -137,9 +169,7 @@ void _addResult(i) {
   ImageElement imageFav = new ImageElement(src: "img/fav-button.png")
   ..alt="favorite button"
   ..className="favorite-button " + data.favorite
-  ..onClick.listen((e) {
-    print("clicked favorite");
-  });
+  ..onClick.listen(clickFavorite);
   anchorFav.children.add(imageFav);
 
   AnchorElement anchorCopy = new AnchorElement();
@@ -148,9 +178,7 @@ void _addResult(i) {
   ImageElement imageCopy = new ImageElement(src: "img/copy-button.png")
     ..alt="copy button"
     ..className="copy-button " + data.favorite
-    ..onClick.listen((e) {
-      print("clicked copy");
-    });
+    ..onClick.listen(clickCopy);
   anchorCopy.children.add(imageCopy);
 
   resultsListElement.children.add(resultItem);
@@ -178,17 +206,15 @@ void _loadJSON() {
     fullSnippets = (new JsonObject.fromJsonString(responseText)).snippets;
     for (int i = 0; i < fullSnippets.length; i++) {
       shortSnippets.add(fullSnippets[i].title + '; ' + fullSnippets[i].categories);
+      tfp.add(fullSnippets[i].title + "...");
     }
+  }).then((_) {
+    searchBarElement.setAttribute('placeholder', tfp[rand.nextInt(tfp.length)]);
   });
 }
 
 void _startTextFieldPlaceholderTimer() {
   new Timer.periodic(new Duration(milliseconds: 1500), (Timer t) {
-    if (tfpi == tfp.length - 1) {
-      tfpi = 0;
-    } else {
-      tfpi++;
-    }
-    searchBarElement.setAttribute('placeholder', tfp[tfpi]);
+    searchBarElement.setAttribute('placeholder', tfp[rand.nextInt(tfp.length)]);
   });
 }

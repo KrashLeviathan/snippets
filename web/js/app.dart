@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:math';
 import 'dart:async';
 import 'package:json_object/json_object.dart';
 
@@ -18,14 +19,8 @@ var fullSnippets;
 List<String> shortSnippets = [];
 
 // Text Field Placeholder strings
-List<String> tfp = [
-  "Splay Trees",
-  "Quick Sort",
-  "Load JSON",
-  "Sticky Footer",
-  "Inspirational Quote"
-];
-int tfpi = 0;
+List<String> tfp = [];
+Random rand = new Random();
 
 void main() {
   // Get the JSON file
@@ -196,17 +191,15 @@ void _loadJSON() {
     fullSnippets = (new JsonObject.fromJsonString(responseText)).snippets;
     for (int i = 0; i < fullSnippets.length; i++) {
       shortSnippets.add(fullSnippets[i].title + '; ' + fullSnippets[i].categories);
+      tfp.add(fullSnippets[i].title + "...");
     }
+  }).then((_) {
+    searchBarElement.setAttribute('placeholder', tfp[rand.nextInt(tfp.length)]);
   });
 }
 
 void _startTextFieldPlaceholderTimer() {
   new Timer.periodic(new Duration(milliseconds: 1500), (Timer t) {
-    if (tfpi == tfp.length - 1) {
-      tfpi = 0;
-    } else {
-      tfpi++;
-    }
-    searchBarElement.setAttribute('placeholder', tfp[tfpi]);
+    searchBarElement.setAttribute('placeholder', tfp[rand.nextInt(tfp.length)]);
   });
 }
